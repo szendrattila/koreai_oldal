@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서울대 한국어 1A · Vocabulary &amp; Grammar Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#211c15;
+    --ink-soft:#645a49;
+    --paper:#ece3cd;
+    --paper-2:#e2d6b8;
+    --paper-3:#d8c9a3;
+    --seal:#ab3729;
+    --seal-dark:#8a2a1f;
+    --jade:#4c6b52;
+    --gold:#a9822f;
+    --line: rgba(33,28,21,0.16);
+    --shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 10px 24px -14px rgba(33,28,21,0.45);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at 15% -10%, rgba(171,55,41,0.07), transparent 45%),
+      radial-gradient(ellipse at 100% 0%, rgba(76,107,82,0.06), transparent 40%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral', serif;
+    min-height:100vh;
+    padding:32px 18px 80px;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:0.5;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(33,28,21,0.015) 0px, rgba(33,28,21,0.015) 1px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(25deg, rgba(33,28,21,0.012) 0px, rgba(33,28,21,0.012) 1px, transparent 1px, transparent 4px);
+    z-index:0;
+  }
+  .wrap{ max-width:880px; margin:0 auto; position:relative; z-index:1; }
+  header{ text-align:center; margin-bottom:8px; }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;
+  }
+  h1{ font-family:'Noto Serif KR', serif; font-weight:700; font-size:clamp(28px, 5.5vw, 42px); margin:0 0 6px; letter-spacing:-0.01em; }
+  h1 .kr{ color:var(--seal); }
+  .sub{ font-size:15px; color:var(--ink-soft); font-style:italic; }
+  .stitch{ width:100%; max-width:420px; margin:22px auto 26px; height:14px; position:relative; }
+  .stitch svg{ width:100%; height:100%; display:block; }
+
+  .tabs{ display:flex; justify-content:center; gap:6px; margin-bottom:18px; flex-wrap:wrap; }
+  .tab{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:10px 16px 9px; background:var(--paper-2); border:1px solid var(--line); border-bottom:none;
+    border-radius:8px 8px 0 0; cursor:pointer; color:var(--ink-soft); position:relative; top:1px;
+    transition:background .15s ease, color .15s ease;
+  }
+  .tab:hover{ color:var(--ink); }
+  .tab.active{ background:var(--paper); color:var(--seal); font-weight:600; box-shadow: 0 -6px 14px -10px rgba(33,28,21,0.35); }
+
+  .card-shell{ background:var(--paper); border:1px solid var(--line); border-radius:4px 16px 16px 16px; box-shadow:var(--shadow); padding:26px; }
+
+  .controls-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
+  .select-group{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  select{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.02em;
+    background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:9px 12px; color:var(--ink);
+    max-width:280px;
+  }
+  .dir-toggle{ display:flex; align-items:center; gap:8px; background:var(--paper-2); border:1px solid var(--line); border-radius:999px; padding:4px; font-family:'JetBrains Mono', monospace; font-size:11px; }
+  .dir-toggle button{ border:none; background:transparent; padding:6px 12px; border-radius:999px; cursor:pointer; color:var(--ink-soft); font-family:inherit; font-size:11px; }
+  .dir-toggle button.active{ background:var(--ink); color:var(--paper); }
+
+  .btn{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.03em; border:1px solid var(--line);
+    background:var(--paper-2); color:var(--ink); padding:10px 16px; border-radius:8px; cursor:pointer;
+    transition:transform .08s ease, background .15s ease;
+  }
+  .btn:hover{ background:var(--paper-3); }
+  .btn:active{ transform:translateY(1px) scale(.98); }
+  .btn.primary{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .btn.primary:hover{ background:#332c22; }
+
+  /* ---------- MATCH MODE ---------- */
+  .match-status{ display:flex; justify-content:center; gap:22px; font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--ink-soft); margin-bottom:16px; }
+  .match-status b{ color:var(--ink); }
+  .match-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:20px; }
+  @media(max-width:560px){ .match-grid{ grid-template-columns:1fr; } }
+  .match-col-label{ font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; text-align:center; }
+  .match-col{ display:flex; flex-direction:column; gap:8px; }
+  .match-item{
+    font-family:'Spectral', serif; font-size:15px; text-align:left; padding:12px 14px; border-radius:10px;
+    border:1px solid var(--line); background:var(--paper-2); cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, transform .08s ease;
+  }
+  .match-item.kr{ font-family:'Noto Serif KR', serif; font-weight:500; }
+  .match-item:hover{ background:var(--paper-3); }
+  .match-item.selected{ background:var(--gold); color:#2b2210; border-color:var(--gold); }
+  .match-item.correct{ background:rgba(76,107,82,0.2); border-color:var(--jade); color:#2d4030; cursor:default; }
+  .match-item.wrong{ background:rgba(171,55,41,0.18); border-color:var(--seal); animation:shake .3s ease; }
+  @keyframes shake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-4px);} 75%{transform:translateX(4px);} }
+  .round-complete{ text-align:center; font-family:'Noto Serif KR', serif; font-weight:600; font-size:18px; color:var(--jade); margin-bottom:14px; display:none; }
+
+  /* ---------- QUIZ MODE ---------- */
+  .quiz-prompt{ text-align:center; margin-bottom:22px; }
+  .quiz-prompt .tag{ font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px; }
+  .quiz-prompt .term{ font-family:'Noto Serif KR', serif; font-weight:600; font-size:clamp(26px, 5.5vw, 34px); }
+  .options{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px; }
+  @media(max-width:520px){ .options{ grid-template-columns:1fr; } }
+  .option{ font-family:'Spectral', serif; font-size:15px; text-align:left; padding:14px 16px; border-radius:10px; border:1px solid var(--line); background:var(--paper-2); cursor:pointer; transition:background .15s ease, border-color .15s ease; }
+  .option:hover{ background:var(--paper-3); }
+  .option.correct{ background:rgba(76,107,82,0.18); border-color:var(--jade); color:#2d4030; font-weight:600; }
+  .option.wrong{ background:rgba(171,55,41,0.14); border-color:var(--seal); color:var(--seal-dark); }
+  .option[disabled]{ cursor:default; }
+  .score-line{ display:flex; justify-content:center; gap:22px; font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--ink-soft); margin-top:14px; }
+  .score-line b{ color:var(--ink); }
+  .btn-row{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+
+  /* ---------- GRAMMAR MODE ---------- */
+  .grammar-prompt{ text-align:center; margin-bottom:18px; }
+  .grammar-prompt .tag{ font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px; }
+  .grammar-prompt .en{ font-family:'Spectral', serif; font-style:italic; font-size:clamp(17px, 3.6vw, 21px); color:var(--ink); }
+  .grammar-answer{
+    min-height:56px; display:flex; flex-wrap:wrap; align-items:center; gap:6px;
+    border-bottom:2px dashed var(--line); padding:8px 4px 16px; margin-bottom:22px;
+  }
+  .grammar-answer .placeholder{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--ink-soft); letter-spacing:0.05em; }
+  .slot-filled{
+    font-family:'Noto Serif KR', serif; font-weight:600; font-size:17px; color:#2d4030;
+    background:rgba(76,107,82,0.16); border:1px solid var(--jade); border-radius:8px; padding:6px 10px;
+    animation:popIn .22s ease;
+  }
+  .slot-filled.particle{
+    background:rgba(169,130,47,0.18); border-color:var(--gold); color:#42320d; font-weight:700;
+  }
+  @keyframes popIn{ 0%{ transform:scale(0.7); opacity:0; } 100%{ transform:scale(1); opacity:1; } }
+  .grammar-bank-label{ font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px; text-align:center; }
+  .grammar-bank{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-bottom:20px; min-height:46px; }
+  .chip{
+    font-family:'Noto Serif KR', serif; font-weight:500; font-size:16px; text-align:center; padding:8px 14px;
+    border-radius:8px; border:1px solid var(--line); background:var(--paper-2); color:var(--ink); cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, transform .08s ease, opacity .15s ease;
+  }
+  .chip.particle-chip{
+    background:var(--paper-3); border-color:var(--gold); font-weight:600; border-radius:999px; padding:6px 12px;
+  }
+  .chip:hover{ background:var(--paper-3); }
+  .chip.wrong{ background:rgba(171,55,41,0.18); border-color:var(--seal); color:var(--seal-dark); animation:shake .3s ease; }
+  .chip.spent{ opacity:0; pointer-events:none; transform:scale(0.8); }
+  .grammar-complete{ text-align:center; font-family:'Noto Serif KR', serif; font-weight:600; font-size:16px; color:var(--jade); margin-bottom:14px; min-height:20px; }
+
+  .seal-stamp{
+    position:fixed; top:50%; left:50%; width:132px; height:132px; margin:-66px 0 0 -66px; border-radius:50%;
+    border:5px solid var(--seal); color:var(--seal); display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif KR', serif; font-weight:700; font-size:26px; letter-spacing:2px; opacity:0; pointer-events:none;
+    transform:rotate(-18deg) scale(1.5); z-index:50; mix-blend-mode:multiply;
+  }
+  .seal-stamp.show{ animation:stampIn .55s cubic-bezier(.2,.9,.25,1) forwards; }
+  @keyframes stampIn{
+    0%{ opacity:0; transform:rotate(-18deg) scale(1.8); }
+    35%{ opacity:0.92; transform:rotate(-10deg) scale(0.94); }
+    50%{ opacity:0.92; transform:rotate(-10deg) scale(1.03); }
+    75%{ opacity:0.9; transform:rotate(-10deg) scale(1); }
+    100%{ opacity:0; transform:rotate(-10deg) scale(1); }
+  }
+  /* ---------- START MENU ---------- */
+  .menu-cards{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:8px; }
+  @media(max-width:560px){ .menu-cards{ grid-template-columns:1fr; } }
+  .menu-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:4px 14px 14px 14px;
+    box-shadow:var(--shadow); padding:24px 20px; cursor:pointer; text-align:left;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .menu-card:hover{ transform:translateY(-2px); box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 16px 30px -16px rgba(33,28,21,0.55); }
+  .menu-card .icon{
+    width:44px; height:44px; border-radius:50%; border:2px solid var(--seal); color:var(--seal);
+    display:flex; align-items:center; justify-content:center; font-family:'Noto Serif KR', serif;
+    font-weight:700; font-size:18px; margin-bottom:14px;
+  }
+  .menu-card h3{ font-family:'Noto Serif KR', serif; font-size:19px; margin:0 0 6px; }
+  .menu-card p{ font-size:14px; color:var(--ink-soft); margin:0; line-height:1.5; }
+  .menu-unit-row{ display:flex; align-items:center; justify-content:center; gap:10px; margin:22px 0 4px; flex-wrap:wrap; }
+  .menu-unit-row label{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--ink-soft); letter-spacing:0.05em; text-transform:uppercase; }
+  .back-btn{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.03em; border:1px solid var(--line);
+    background:transparent; color:var(--ink-soft); padding:9px 14px; border-radius:8px; cursor:pointer; margin-bottom:14px;
+  }
+  .back-btn:hover{ color:var(--ink); background:var(--paper-2); }
+
+  footer{ text-align:center; margin-top:26px; font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--ink-soft); }
+  @media (prefers-reduced-motion: reduce){ .btn, .option, .match-item, .seal-stamp{ transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+
+<div class="seal-stamp" id="sealStamp">정답</div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">서울대학교 한국어 · SNU Korean 1A</div>
+    <h1><span class="kr">1A</span> Vocabulary &amp; Grammar Quiz</h1>
+    <div class="sub">All 8 units · 50+ grammar sentences per unit · separated particle practice</div>
+  </header>
+
+  <div class="stitch">
+    <svg viewBox="0 0 420 14" preserveAspectRatio="none">
+      <line x1="0" y1="7" x2="420" y2="7" stroke="var(--line)" stroke-width="1"/>
+      <g fill="none" stroke="var(--seal)" stroke-width="1.6" opacity="0.55">
+        <path d="M20 2 L20 12 M45 2 L45 12 M70 2 L70 12 M95 2 L95 12 M120 2 L120 12 M145 2 L145 12 M170 2 L170 12 M195 2 L195 12 M220 2 L220 12 M245 2 L245 12 M270 2 L270 12 M295 2 L295 12 M320 2 L320 12 M345 2 L345 12 M370 2 L370 12 M395 2 L395 12"/>
+      </g>
+    </svg>
+  </div>
+
+  <section id="startMenu">
+    <div class="menu-cards">
+      <div class="menu-card" data-mode="match">
+        <div class="icon">⇄</div>
+        <h3>Match</h3>
+        <p>Click a Korean term and its English meaning to pair them up. 8 pairs a round, mistakes tracked.</p>
+      </div>
+      <div class="menu-card" data-mode="quiz">
+        <div class="icon">?</div>
+        <h3>Multiple Choice</h3>
+        <p>One term, four options. Pick the right meaning — switch direction (한→EN / EN→한) any time.</p>
+      </div>
+      <div class="menu-card" data-mode="grammar" style="grid-column: span 2;">
+        <div class="icon">文</div>
+        <h3>Grammar Practice</h3>
+        <p>Select specific grammar practices within each unit). Grammar particles (은/는, 이/가, 을/를, 에, 에서 ...) are separated!</p>
+      </div>
+    </div>
+    <div class="menu-unit-row">
+      <label for="menuUnitSelect">Unit</label>
+      <select id="menuUnitSelect"></select>
+    </div>
+  </section>
+
+  <div class="tabs" id="tabsRow" style="display:none;">
+    <div class="tab active" data-mode="match">Match</div>
+    <div class="tab" data-mode="quiz">Multiple Choice</div>
+    <div class="tab" data-mode="grammar">Grammar</div>
+  </div>
+
+  <div class="card-shell" id="cardShell" style="display:none;">
+    <button class="back-btn" id="backToMenu">← Menu</button>
+    <div class="controls-row">
+      <div class="select-group">
+        <select id="unitSelect"></select>
+        <select id="grammarTopicSelect" style="display:none;"></select>
+      </div>
+      <div class="dir-toggle" id="dirToggle">
+        <button id="dirKrEn" class="active">한 → EN</button>
+        <button id="dirEnKr">EN → 한</button>
+      </div>
+    </div>
+
+    <!-- MATCH -->
+    <section id="panel-match">
+      <div class="match-status">
+        <span>pairs: <b id="matchDone">0</b>/<span id="matchTotal">8</span></span>
+        <span>mistakes: <b id="matchMistakes">0</b></span>
+      </div>
+      <div class="round-complete" id="roundComplete">✓ 다 맞혔어요! Round complete</div>
+      <div class="match-grid">
+        <div>
+          <div class="match-col-label">Korean</div>
+          <div class="match-col" id="matchKrCol"></div>
+        </div>
+        <div>
+          <div class="match-col-label">English</div>
+          <div class="match-col" id="matchEnCol"></div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" id="matchNewRound">⤮ New round</button>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="panel-quiz" style="display:none;">
+      <div class="quiz-prompt">
+        <div class="tag" id="quizTag">WHAT DOES THIS MEAN?</div>
+        <div class="term" id="quizTerm">쓰다</div>
+      </div>
+      <div class="options" id="quizOptions"></div>
+      <div class="btn-row">
+        <button class="btn" id="quizSkip">⤮ New question</button>
+        <button class="btn primary" id="quizNext" style="display:none;">Next question →</button>
+      </div>
+      <div class="score-line">
+        <span>score: <b id="quizScore">0</b>/<span id="quizAsked">0</span></span>
+        <span>accuracy: <b id="quizAcc">—</b></span>
+      </div>
+    </section>
+
+    <!-- GRAMMAR PRACTICE -->
+    <section id="panel-grammar" style="display:none;">
+      <div class="grammar-prompt">
+        <div class="tag" id="grammarTopicTag">GRAMMAR PRACTICE</div>
+        <div class="en" id="grammarEn">I am a doctor.</div>
+      </div>
+      <div class="grammar-answer" id="grammarAnswer">
+        <span class="placeholder" id="grammarPlaceholder">tap words &amp; particles below, in order →</span>
+      </div>
+      <div class="grammar-complete" id="grammarComplete"></div>
+      <div class="grammar-bank-label">Word &amp; Particle Bank · select correct particles</div>
+      <div class="grammar-bank" id="grammarBank"></div>
+      <div class="btn-row">
+        <button class="btn" id="grammarSkip">⤮ New sentence</button>
+        <button class="btn" id="grammarReveal">Show answer</button>
+        <button class="btn primary" id="grammarNext" style="display:none;">Next sentence →</button>
+      </div>
+      <div class="score-line">
+        <span>completed: <b id="grammarDone">0</b></span>
+        <span>mistakes: <b id="grammarMistakes">0</b></span>
+      </div>
+    </section>
+  </div>
+
+  <footer>vocabulary drawn from 1A vocabulary lists · 도장 stamps mean you got it right</footer>
+</div>
+
+<script>
+/* ---------------- VOCABULARY DATA ---------------- */
+const UNITS = {
+"Unit 1 · Greetings": [
+["나라","country"],["사람","person"],["한국","Korea"],["일본","Japan"],["중국","China"],
+["러시아","Russia"],["몽골","Mongolia"],["말레이시아","Malaysia"],["베트남","Vietnam"],
+["미국","United States"],["프랑스","France"],["한국 사람","Korean (person)"],["일본 사람","Japanese (person)"],
+["중국 사람","Chinese (person)"],["러시아 사람","Russian (person)"],["몽골 사람","Mongolian (person)"],
+["말레이시아 사람","Malaysian (person)"],["베트남 사람","Vietnamese (person)"],["미국 사람","American (person)"],
+["프랑스 사람","French (person)"],["직업","occupation"],["의사","doctor"],["대학생","college student"],
+["기자","reporter"],["학생","student"],["선생님","teacher"],["배우","actor/actress"],["요리사","chef"],
+["프로그래머","programmer"],["가수","singer"],["운동선수","athlete"],["회사원","office worker"]
+],
+"Unit 2 · Classroom & Room": [
+["교실","classroom"],["시계","clock"],["창문","window"],["컴퓨터","computer"],["책상","desk"],["의자","chair"],
+["가방","bag"],["휴대폰","cell phone"],["지우개","eraser"],["연필","pencil"],["필통","pencil case"],
+["공책","notebook"],["책","book"],["볼펜","ballpoint pen"],["집","house"],["방","room"],["부엌","kitchen"],
+["화장실","bathroom"],["노트북","laptop"],["에어컨","air conditioner (AC)"],["냉장고","refrigerator"],
+["텔레비전","television (TV)"],["세탁기","washing machine"],["침대","bed"]
+],
+"Unit 3 · Store": [
+["가게","store"],["빵","bread"],["수박","watermelon"],["딸기","strawberry"],["사과","apple"],["우유","milk"],
+["차","tea"],["커피","coffee"],["과일","fruit"],["물","water"],["음료수","drink"],["주스","juice"],
+["샌드위치","sandwich"],["하나","one"],["둘","two"],["셋","three"],["넷","four"],["다섯","five"],["여섯","six"],
+["일곱","seven"],["여덟","eight"],["아홉","nine"],["열","ten"],["앞","front"],["뒤","back"],["옆","next to"],
+["안","inside"],["밖","outside"],["위","top"],["아래","bottom"],["여기","here"],["거기","there"],["저기","over there"]
+],
+"Unit 4 · Everyday Life": [
+["보다","to see / look"],["좋아하다","to like"],["사다","to buy"],["만나다","to meet"],
+["아르바이트하다","to work part-time"],["먹다","to eat"],["전화하다","to call"],["공부하다","to study"],
+["일하다","to work"],["배우다","to learn"],["읽다","to read"],["마시다","to drink"],["운동하다","to exercise"],
+["도서관","library"],["학교","school"],["병원","hospital"],["우체국","post office"],["약국","pharmacy"],
+["영화관","movie theater"],["식당","restaurant"],["공원","park"],["회사","company"],["시장","market"],
+["서점","bookstore"],["은행","bank"],["백화점","department store"],["스포츠 센터","sports center"]
+],
+"Unit 5 · Restaurant": [
+["맛있다","to be delicious"],["맛없다","to not be delicious"],["재미있다","to be fun"],["재미없다","to not be fun"],
+["좋다","to be good"],["친절하다","to be friendly"],["많다","to have many / a lot"],["싸다","to be inexpensive"],
+["비싸다","to be expensive"],["깨끗하다","to be clean"],["불고기","bulgogi"],["갈비탕","short rib soup"],
+["김치찌개","gimchi stew"],["삼겹살","samgyeopsal"],["냉면","cold noodles"],["김치","gimchi"],["비빔밥","bibimbap"],
+["김밥","gimbap"],["떡볶이","spicy rice cakes"],["메뉴","menu"],["피자","pizza"],["햄버거","hamburger"],
+["스파게티","spaghetti"],["콜라","cola"],["사이다","soda"],["십","ten (10)"],["이십","twenty (20)"],["삼십","thirty (30)"],
+["사십","forty (40)"],["오십","fifty (50)"],["백","hundred (100)"],["천","thousand (1,000)"],["만","ten thousand (10,000)"]
+],
+"Unit 6 · Dates & Days": [
+["월요일","Monday"],["화요일","Tuesday"],["수요일","Wednesday"],["목요일","Thursday"],["금요일","Friday"],
+["토요일","Saturday"],["일요일","Sunday"],["평일","weekday"],["주말","weekend"],["지난주","last week"],
+["이번 주","this week"],["다음 주","next week"],["오늘","today"],["어제","yesterday"],["내일","tomorrow"],
+["아침","morning"],["점심","afternoon (lunch)"],["저녁","evening"],["시간","time"],["등산하다","to hike"],
+["구경하다","to look around"],["산책하다","to take a walk"],["사진을 찍다","to take a photo"],
+["빨래하다","to do laundry"],["청소하다","to clean"],["쇼핑하다","to shop"],["일월","January"],["이월","February"],
+["삼월","March"],["사월","April"],["오월","May"],["유월","June"],["칠월","July"],["팔월","August"],["구월","September"],
+["시월","October"],["십일월","November"],["십이월","December"],["일","day"],["월","month"],["며칠","what date"]
+],
+"Unit 7 · Time": [
+["일어나다","to get up"],["세수하다","to wash one's face"],["옷을 입다","to put on clothes"],
+["화장하다","to put on makeup"],["샤워하다","to shower"],["이를 닦다","to brush one's teeth"],
+["요리하다","to cook"],["이야기하다","to talk"],["빨리","quickly"],["조금","a little"],["천천히","slowly"],
+["많이","a lot"],["일찍","early"],["늦게","late"],["축구하다","to play soccer"],["농구하다","to play basketball"],
+["야구하다","to play baseball"],["테니스 치다","to play tennis"],["수영하다","to swim"],["골프 치다","to play golf"],
+["시험이 끝나다","the test is over"],["수업이 끝나다","class is over"],["캠핑을 하다","to go camping"],
+["여행하다","to travel"]
+],
+"Unit 8 · Weather": [
+["봄","spring"],["여름","summer"],["가을","fall / autumn"],["겨울","winter"],["맑다","to be sunny"],
+["흐리다","to be cloudy"],["따뜻하다","to be warm"],["비가 오다","to rain"],["눈이 오다","to snow"],
+["시원하다","to be cool"],["바람이 불다","to be windy"],["가볍다","to be light"],["무겁다","to be heavy"],
+["무섭다","to be scary"],["귀엽다","to be cute"],["덥다","to be hot"],["춥다","to be cold"],["쉽다","to be easy"],
+["어렵다","to be difficult"]
+]
+};
+const ALL_LABEL = "All units";
+UNITS[ALL_LABEL] = Object.values(UNITS).flat();
+
+/* ---------------- GRAMMAR DATA (50+ Sentences per Unit) ---------------- */
+function W(t){ return [{t, ok:true, isParticle:false}]; }
+function P(correct, ...decoys){ return [{t:correct, ok:true, isParticle:true}, ...decoys.map(d=>({t:d, ok:false, isParticle:true}))]; }
+
+const GRAMMAR_UNITS = {
+"Unit 1 · Greetings": {
+  "G1: N은/는 N이에요/예요 (Topic & Copula)": [
+    { en:"I am a doctor.", slots:[ W("저"), P("는","은"), W("의사"), P("예요","이에요") ] },
+    { en:"Is Yujin a student?", slots:[ W("유진 씨"), P("는","은"), W("학생"), P("이에요?","예요?") ] },
+    { en:"The teacher is Korean.", slots:[ W("선생님"), P("은","는"), W("한국 사람"), P("이에요","예요") ] },
+    { en:"Michael is an office worker.", slots:[ W("마이클 씨"), P("는","은"), W("회사원"), P("이에요","예요") ] },
+    { en:"Is Tuan a chef?", slots:[ W("투안 씨"), P("는","은"), W("요리사"), P("예요?","이에요?") ] },
+    { en:"Stephen is American.", slots:[ W("스티븐 씨"), P("는","은"), W("미국 사람"), P("이에요","예요") ] },
+    { en:"Anis is a college student.", slots:[ W("아니스 씨"), P("는","은"), W("대학생"), P("이에요","예요") ] },
+    { en:"Minjun is a programmer.", slots:[ W("민준 씨"), P("는","은"), W("프로그래머"), P("예요","이에요") ] },
+    { en:"Sora is an athlete.", slots:[ W("소라 씨"), P("는","은"), W("운동선수"), P("예요","이에요") ] },
+    { en:"Is Elena French?", slots:[ W("엘레나 씨"), P("는","은"), W("프랑스 사람"), P("이에요?","예요?") ] },
+    { en:"I am Japanese.", slots:[ W("저"), P("는","은"), W("일본 사람"), P("이에요","예요") ] },
+    { en:"Ching-ching is Chinese.", slots:[ W("칭칭 씨"), P("는","은"), W("중국 사람"), P("이에요","예요") ] },
+    { en:"I am a singer.", slots:[ W("저"), P("는","은"), W("가수"), P("예요","이에요") ] },
+    { en:"Anis is a teacher.", slots:[ W("아니스 씨"), P("는","은"), W("선생님"), P("이에요","예요") ] },
+    { en:"Mina is Mongolian.", slots:[ W("미나 씨"), P("는","은"), W("몽골 사람"), P("이에요","예요") ] },
+    { en:"Is Eric a reporter?", slots:[ W("에릭 씨"), P("는","은"), W("기자"), P("예요?","이에요?") ] },
+    { en:"Sora is a doctor.", slots:[ W("소라 씨"), P("는","은"), W("의사"), P("예요","이에요") ] },
+    { en:"I am Russian.", slots:[ W("저"), P("는","은"), W("러시아 사람"), P("이에요","예요") ] },
+    { en:"Yujin is an actor.", slots:[ W("유진 씨"), P("는","은"), W("배우"), P("예요","이에요") ] },
+    { en:"Is Tuan Vietnamese?", slots:[ W("투안 씨"), P("는","은"), W("베트남 사람"), P("이에요?","예요?") ] },
+    { en:"Stephen is a teacher.", slots:[ W("스티븐 씨"), P("는","은"), W("선생님"), P("이에요","예요") ] },
+    { en:"Michael is an athlete.", slots:[ W("마이클 씨"), P("는","은"), W("운동선수"), P("예요","이에요") ] },
+    { en:"I am Malaysian.", slots:[ W("저"), P("는","은"), W("말레이시아 사람"), P("이에요","예요") ] },
+    { en:"Minjun is an office worker.", slots:[ W("민준 씨"), P("는","은"), W("회사원"), P("이에요","예요") ] },
+    { en:"Is Elena a student?", slots:[ W("엘레나 씨"), P("는","은"), W("학생"), P("이에요?","예요?") ] }
+  ],
+  "G2: N이/가 아니에요 (Negative Copula)": [
+    { en:"I am not a singer.", slots:[ W("저"), P("는","은"), W("가수"), P("가","이"), W("아니에요") ] },
+    { en:"I am not a reporter.", slots:[ W("저"), P("는","은"), W("기자"), P("가","이"), W("아니에요") ] },
+    { en:"I am not a teacher.", slots:[ W("저"), P("는","은"), W("선생님"), P("이","가"), W("아니에요") ] },
+    { en:"Michael is not a doctor.", slots:[ W("마이클 씨"), P("는","은"), W("의사"), P("가","이"), W("아니에요") ] },
+    { en:"I am not a student.", slots:[ W("저"), P("는","은"), W("학생"), P("이","가"), W("아니에요") ] },
+    { en:"Sora is not an actor.", slots:[ W("소라 씨"), P("는","은"), W("배우"), P("가","이"), W("아니에요") ] },
+    { en:"I am not Korean.", slots:[ W("저"), P("는","은"), W("한국 사람"), P("이","가"), W("아니에요") ] },
+    { en:"Minjun is not a chef.", slots:[ W("민준 씨"), P("는","은"), W("요리사"), P("가","이"), W("아니에요") ] },
+    { en:"Elena is not Japanese.", slots:[ W("엘레나 씨"), P("는","은"), W("일본 사람"), P("이","가"), W("아니에요") ] },
+    { en:"Eric is not a programmer.", slots:[ W("에릭 씨"), P("는","은"), W("프로그래머"), P("가","이"), W("아니에요") ] },
+    { en:"I am not an office worker.", slots:[ W("저"), P("는","은"), W("회사원"), P("이","가"), W("아니에요") ] },
+    { en:"Tuan is not American.", slots:[ W("투안 씨"), P("는","은"), W("미국 사람"), P("이","가"), W("아니에요") ] },
+    { en:"Anis is not a doctor.", slots:[ W("아니스 씨"), P("는","은"), W("의사"), P("가","이"), W("아니에요") ] },
+    { en:"Mina is not a college student.", slots:[ W("미나 씨"), P("는","은"), W("대학생"), P("이","가"), W("아니에요") ] },
+    { en:"Stephen is not a singer.", slots:[ W("스티븐 씨"), P("는","은"), W("가수"), P("가","이"), W("아니에요") ] },
+    { en:"I am not Chinese.", slots:[ W("저"), P("는","은"), W("중국 사람"), P("이","가"), W("아니에요") ] },
+    { en:"Yujin is not a reporter.", slots:[ W("유진 씨"), P("는","은"), W("기자"), P("가","이"), W("아니에요") ] },
+    { en:"Ching-ching is not an athlete.", slots:[ W("칭칭 씨"), P("는","은"), W("운동선수"), P("가","이"), W("아니에요") ] },
+    { en:"I am not Russian.", slots:[ W("저"), P("는","은"), W("러시아 사람"), P("이","가"), W("아니에요") ] },
+    { en:"Sora is not a teacher.", slots:[ W("소라 씨"), P("는","은"), W("선생님"), P("이","가"), W("아니에요") ] },
+    { en:"Michael is not French.", slots:[ W("마이클 씨"), P("는","은"), W("프랑스 사람"), P("이","가"), W("아니에요") ] },
+    { en:"Minjun is not an actor.", slots:[ W("민준 씨"), P("는","은"), W("배우"), P("가","이"), W("아니에요") ] },
+    { en:"I am not Mongolian.", slots:[ W("저"), P("는","은"), W("몽골 사람"), P("이","가"), W("아니에요") ] },
+    { en:"Elena is not a chef.", slots:[ W("엘레나 씨"), P("는","은"), W("요리사"), P("가","이"), W("아니에요") ] },
+    { en:"Eric is not a student.", slots:[ W("에릭 씨"), P("는","은"), W("학생"), P("이","가"), W("아니에요") ] }
+  ]
+},
+"Unit 2 · Classroom & Room": {
+  "G1: 이거/그거/저거는 N이에요/예요 (Demonstratives)": [
+    { en:"This is a pencil case.", slots:[ W("이거"), P("는","은"), W("필통"), P("이에요","예요") ] },
+    { en:"Is that a laptop?", slots:[ W("저거"), P("는","은"), W("노트북"), P("이에요?","예요?") ] },
+    { en:"That is an eraser.", slots:[ W("그거"), P("는","은"), W("지우개"), P("예요","이에요") ] },
+    { en:"This is a clock.", slots:[ W("이거"), P("는","은"), W("시계"), P("예요","이에요") ] },
+    { en:"That over there is a bag.", slots:[ W("저거"), P("는","은"), W("가방"), P("이에요","예요") ] },
+    { en:"This is a desk.", slots:[ W("이거"), P("는","은"), W("책상"), P("이에요","예요") ] },
+    { en:"That is a chair.", slots:[ W("그거"), P("는","은"), W("의자"), P("예요","이에요") ] },
+    { en:"That over there is a window.", slots:[ W("저거"), P("는","은"), W("창문"), P("이에요","예요") ] },
+    { en:"This is a cell phone.", slots:[ W("이거"), P("는","은"), W("휴대폰"), P("이에요","예요") ] },
+    { en:"Is that a book?", slots:[ W("그거"), P("는","은"), W("책"), P("이에요?","예요?") ] },
+    { en:"This is a pencil.", slots:[ W("이거"), P("는","은"), W("연필"), P("이에요","예요") ] },
+    { en:"That over there is a bed.", slots:[ W("저거"), P("는","은"), W("침대"), P("예요","이에요") ] },
+    { en:"This is a computer.", slots:[ W("이거"), P("는","은"), W("컴퓨터"), P("예요","이에요") ] },
+    { en:"That is a ballpoint pen.", slots:[ W("그거"), P("는","은"), W("볼펜"), P("이에요","예요") ] },
+    { en:"That over there is a television.", slots:[ W("저거"), P("는","은"), W("텔레비전"), P("이에요","예요") ] },
+    { en:"This is a notebook.", slots:[ W("이거"), P("는","은"), W("공책"), P("이에요","예요") ] }
+  ],
+  "G2: N의 N (Possessive Particle)": [
+    { en:"This is Eric's notebook.", slots:[ W("이거"), P("는","은"), W("에릭 씨"), P("의","가"), W("공책"), P("이에요","예요") ] },
+    { en:"That bag is not my bag.", slots:[ W("그 가방"), P("은","는"), W("제 가방"), P("이","가"), W("아니에요") ] },
+    { en:"This is my friend's umbrella.", slots:[ W("이거"), P("는","은"), W("제 친구"), P("의","를"), W("우산"), P("이에요","예요") ] },
+    { en:"This is the teacher's chair.", slots:[ W("이거"), P("는","은"), W("선생님"), P("의","가"), W("의자"), P("예요","이에요") ] },
+    { en:"This is Minjun's book.", slots:[ W("이거"), P("는","은"), W("민준 씨"), P("의","를"), W("책"), P("이에요","예요") ] },
+    { en:"That is Sora's cell phone.", slots:[ W("그거"), P("는","은"), W("소라 씨"), P("의","가"), W("휴대폰"), P("이에요","예요") ] },
+    { en:"This pencil is Yujin's pencil.", slots:[ W("이 연필"), P("은","는"), W("유진 씨"), P("의","를"), W("연필"), P("이에요","예요") ] },
+    { en:"That over there is my computer.", slots:[ W("저거"), P("는","은"), W("제"), P("의","가"), W("컴퓨터"), P("예요","이에요") ] },
+    { en:"This is Michael's desk.", slots:[ W("이거"), P("는","은"), W("마이클 씨"), P("의","를"), W("책상"), P("이에요","예요") ] },
+    { en:"That is my room.", slots:[ W("그거"), P("는","은"), W("제 방"), P("이에요","예요") ] },
+    { en:"This eraser is Anis's eraser.", slots:[ W("이 지우개"), P("는","은"), W("아니스 씨"), P("의","가"), W("지우개"), P("예요","이에요") ] },
+    { en:"That over there is Elena's bag.", slots:[ W("저거"), P("는","은"), W("엘레나 씨"), P("의","를"), W("가방"), P("이에요","예요") ] },
+    { en:"This is Stephen's laptop.", slots:[ W("이거"), P("는","은"), W("스티븐 씨"), P("의","가"), W("노트북"), P("이에요","예요") ] },
+    { en:"That is the teacher's pencil case.", slots:[ W("그거"), P("는","은"), W("선생님"), P("의","를"), W("필통"), P("이에요","예요") ] },
+    { en:"This clock is Mina's clock.", slots:[ W("이 시계"), P("는","은"), W("미나 씨"), P("의","가"), W("시계"), P("예요","이에요") ] },
+    { en:"That is Tuan's house.", slots:[ W("그거"), P("는","은"), W("투안 씨"), P("의","를"), W("집"), P("이에요","예요") ] },
+    { en:"This bed is my bed.", slots:[ W("이 침대"), P("는","은"), W("제 침대"), P("예요","이에요") ] }
+  ],
+  "G3: N에 N이/가 있어요/없어요 (Existence & Location)": [
+    { en:"There is a computer.", slots:[ W("컴퓨터"), P("가","이"), W("있어요") ] },
+    { en:"There is no clock in the classroom.", slots:[ W("교실"), P("에","에서"), W("시계"), P("가","이"), W("없어요") ] },
+    { en:"There is a bed in the room.", slots:[ W("방"), P("에","에서"), W("침대"), P("가","이"), W("있어요") ] },
+    { en:"There is no television.", slots:[ W("텔레비전"), P("이","가"), W("없어요") ] },
+    { en:"There is an air conditioner in the kitchen.", slots:[ W("부엌"), P("에","에서"), W("에어컨"), P("이","가"), W("있어요") ] },
+    { en:"There is a refrigerator in the house.", slots:[ W("집"), P("에","에서"), W("냉장고"), P("가","이"), W("있어요") ] },
+    { en:"There is a cell phone on the desk.", slots:[ W("책상 위"), P("에","에서"), W("휴대폰"), P("이","가"), W("있어요") ] },
+    { en:"There is a chair in the classroom.", slots:[ W("교실"), P("에","에서"), W("의자"), P("가","이"), W("있어요") ] },
+    { en:"Is there a washing machine in the bathroom?", slots:[ W("화장실"), P("에","에서"), W("세탁기"), P("가","이"), W("있어요?") ] },
+    { en:"There is a window in the classroom.", slots:[ W("교실"), P("에","에서"), W("창문"), P("이","가"), W("있어요") ] },
+    { en:"There is no eraser in the pencil case.", slots:[ W("필통"), P("에","에서"), W("지우개"), P("가","이"), W("없어요") ] },
+    { en:"There is a laptop in the room.", slots:[ W("방"), P("에","에서"), W("노트북"), P("이","가"), W("있어요") ] },
+    { en:"Is there a book on the desk?", slots:[ W("책상 위"), P("에","에서"), W("책"), P("이","가"), W("있어요?") ] },
+    { en:"There is no bag in the classroom.", slots:[ W("교실"), P("에","에서"), W("가방"), P("이","가"), W("없어요") ] },
+    { en:"There is a pencil in the pencil case.", slots:[ W("필통"), P("에","에서"), W("연필"), P("이","가"), W("있어요") ] },
+    { en:"There is no computer in the room.", slots:[ W("방"), P("에","에서"), W("컴퓨터"), P("가","이"), W("없어요") ] },
+    { en:"Is there a television in the house?", slots:[ W("집"), P("에","에서"), W("텔레비전"), P("이","가"), W("있어요?") ] }
+  ]
+},
+"Unit 3 · Store": {
+  "G1: N하고 N (Connective Particle)": [
+    { en:"There is bread and milk.", slots:[ W("빵"), P("하고","과"), W("우유"), P("가","이"), W("있어요") ] },
+    { en:"Please give me juice and coffee.", slots:[ W("주스"), P("하고","과"), W("커피"), W("주세요") ] },
+    { en:"There are apples and strawberries.", slots:[ W("사과"), P("하고","과"), W("딸기"), P("가","이"), W("있어요") ] },
+    { en:"Please give me bread and milk.", slots:[ W("빵"), P("하고","과"), W("우유"), W("주세요") ] },
+    { en:"There are watermelons and apples.", slots:[ W("수박"), P("하고","과"), W("사과"), P("가","이"), W("있어요") ] },
+    { en:"Please give me tea and water.", slots:[ W("차"), P("하고","과"), W("물"), W("주세요") ] },
+    { en:"There are sandwiches and drinks.", slots:[ W("샌드위치"), P("하고","과"), W("음료수"), P("가","이"), W("있어요") ] },
+    { en:"Please give me strawberries and milk.", slots:[ W("딸기"), P("하고","과"), W("우유"), W("주세요") ] },
+    { en:"There are apples and oranges.", slots:[ W("사과"), P("하고","과"), W("오렌지"), P("가","이"), W("있어요") ] },
+    { en:"Please give me bread and juice.", slots:[ W("빵"), P("하고","과"), W("주스"), W("주세요") ] },
+    { en:"There is coffee and tea.", slots:[ W("커피"), P("하고","과"), W("차"), P("가","이"), W("있어요") ] },
+    { en:"Please give me water and fruit.", slots:[ W("물"), P("하고","과"), W("과일"), W("주세요") ] },
+    { en:"There are sandwiches and milk.", slots:[ W("샌드위치"), P("하고","과"), W("우유"), P("가","이"), W("있어요") ] },
+    { en:"Please give me coffee and water.", slots:[ W("커피"), P("하고","과"), W("물"), W("주세요") ] },
+    { en:"There are strawberries and watermelons.", slots:[ W("딸기"), P("하고","과"), W("수박"), P("이","가"), W("있어요") ] },
+    { en:"Please give me tea and bread.", slots:[ W("차"), P("하고","과"), W("빵"), W("주세요") ] }
+  ],
+  "G2: N Counter 주세요 (Ordering & Counters)": [
+    { en:"Please give me water.", slots:[ W("물"), W("좀"), W("주세요") ] },
+    { en:"Please give me three apples.", slots:[ W("사과"), W("세 개"), W("주세요") ] },
+    { en:"There are four sandwiches.", slots:[ W("샌드위치"), P("가","이"), W("네 개"), W("있어요") ] },
+    { en:"There are five students here.", slots:[ W("여기"), P("에","에서"), W("학생"), P("이","가"), W("다섯 명"), W("있어요") ] },
+    { en:"Please give me six strawberries.", slots:[ W("딸기"), W("여섯 개"), W("주세요") ] },
+    { en:"Please give me two cups of tea.", slots:[ W("차"), W("두 잔"), W("주세요") ] },
+    { en:"Please give me one watermelon.", slots:[ W("수박"), W("하나"), W("주세요") ] },
+    { en:"Please give me four cups of coffee.", slots:[ W("커피"), W("네 잔"), W("주세요") ] },
+    { en:"Please give me two pieces of bread.", slots:[ W("빵"), W("두 개"), W("주세요") ] },
+    { en:"There are seven people.", slots:[ W("사람"), P("이","가"), W("일곱 명"), W("있어요") ] },
+    { en:"Please give me eight apples.", slots:[ W("사과"), W("여덟 개"), W("주세요") ] },
+    { en:"Please give me one cup of juice.", slots:[ W("주스"), W("한 잔"), W("주세요") ] },
+    { en:"Please give me five sandwiches.", slots:[ W("샌드위치"), W("다섯 개"), W("주세요") ] },
+    { en:"There are three watermelons.", slots:[ W("수박"), P("이","가"), W("세 개"), W("있어요") ] },
+    { en:"Please give me nine strawberries.", slots:[ W("딸기"), W("아홉 개"), W("주세요") ] },
+    { en:"Please give me ten drinks.", slots:[ W("음료수"), W("열 개"), W("주세요") ] },
+    { en:"Please give me three cups of water.", slots:[ W("물"), W("세 잔"), W("주세요") ] }
+  ],
+  "G3: Location 에 있어요/없어요 (Positions)": [
+    { en:"Milk is in the refrigerator.", slots:[ W("우유"), P("는","은"), W("냉장고"), P("에","에서"), W("있어요") ] },
+    { en:"The bag is under the desk.", slots:[ W("가방"), P("은","는"), W("책상 아래"), P("에","에서"), W("있어요") ] },
+    { en:"The cat is inside the room.", slots:[ W("고양이"), P("는","은"), W("방 안"), P("에","에서"), W("있어요") ] },
+    { en:"The bank is next to the post office.", slots:[ W("은행"), P("은","는"), W("우체국 옆"), P("에","에서"), W("있어요") ] },
+    { en:"The watermelon is in front of the store.", slots:[ W("수박"), P("은","는"), W("가게 앞"), P("에","에서"), W("있어요") ] },
+    { en:"There is a drink outside.", slots:[ W("음료수"), P("가","이"), W("밖"), P("에","에서"), W("있어요") ] },
+    { en:"There is fruit over there.", slots:[ W("저기"), P("에","에서"), W("과일"), P("이","가"), W("있어요") ] },
+    { en:"The laptop is on the desk.", slots:[ W("노트북"), P("은","는"), W("책상 위"), P("에","에서"), W("있어요") ] },
+    { en:"The shoes are under the bed.", slots:[ W("신발"), P("은","는"), W("침대 아래"), P("에","에서"), W("있어요") ] },
+    { en:"The book is inside the bag.", slots:[ W("책"), P("은","는"), W("가방 안"), P("에","에서"), W("있어요") ] },
+    { en:"The store is behind the house.", slots:[ W("가게"), P("는","은"), W("집 뒤"), P("에","에서"), W("있어요") ] },
+    { en:"The bread is on top of the table.", slots:[ W("빵"), P("은","는"), W("탁자 위"), P("에","에서"), W("있어요") ] },
+    { en:"Is the coffee inside the store?", slots:[ W("커피"), P("는","은"), W("가게 안"), P("에","에서"), W("있어요?") ] },
+    { en:"The chair is next to the desk.", slots:[ W("의자"), P("는","은"), W("책상 옆"), P("에","에서"), W("있어요") ] },
+    { en:"There is no water here.", slots:[ W("여기"), P("에","에서"), W("물"), P("이","가"), W("없어요") ] },
+    { en:"The apples are in front of the window.", slots:[ W("사과"), P("는","은"), W("창문 앞"), P("에","에서"), W("있어요") ] },
+    { en:"The clock is on top of the wall.", slots:[ W("시계"), P("는","은"), W("벽 위"), P("에","에서"), W("있어요") ] }
+  ]
+},
+"Unit 4 · Everyday Life": {
+  "G1: N을/를 V (Object Particle)": [
+    { en:"I study Korean.", slots:[ W("저"), P("는","은"), W("한국어"), P("를","을"), W("공부해요") ] },
+    { en:"I read a book.", slots:[ W("저"), P("는","은"), W("책"), P("을","를"), W("읽어요") ] },
+    { en:"I eat breakfast.", slots:[ W("아침"), P("을","를"), W("먹어요") ] },
+    { en:"I drink tea at home.", slots:[ W("집"), P("에서","에"), W("차"), P("를","을"), W("마셔요") ] },
+    { en:"I watch a movie.", slots:[ W("저"), P("는","은"), W("영화"), P("를","을"), W("봐요") ] },
+    { en:"I buy a bag.", slots:[ W("가방"), P("을","를"), W("사요") ] },
+    { en:"I drink coffee.", slots:[ W("커피"), P("를","을"), W("마셔요") ] },
+    { en:"I eat bread.", slots:[ W("빵"), P("을","를"), W("먹어요") ] },
+    { en:"I meet a friend.", slots:[ W("친구"), P("를","을"), W("만나요") ] },
+    { en:"I make a phone call.", slots:[ W("전화"), P("를","을"), W("해요") ] },
+    { en:"I learn English.", slots:[ W("영어"), P("를","을"), W("배워요") ] },
+    { en:"I do exercise.", slots:[ W("운동"), P("을","를"), W("해요") ] },
+    { en:"I buy shoes.", slots:[ W("신발"), P("을","를"), W("사요") ] },
+    { en:"I drink water.", slots:[ W("물"), P("을","를"), W("마셔요") ] },
+    { en:"I eat lunch.", slots:[ W("점심"), P("을","를"), W("먹어요") ] },
+    { en:"I watch television.", slots:[ W("텔레비전"), P("을","를"), W("봐요") ] }
+  ],
+  "G2: Place 에 가요/와요 (Destination Particle)": [
+    { en:"I go to school.", slots:[ W("저"), P("는","은"), W("학교"), P("에","에서"), W("가요") ] },
+    { en:"I go to the library.", slots:[ W("도서관"), P("에","에서"), W("가요") ] },
+    { en:"A friend comes to school.", slots:[ W("친구"), P("가","이"), W("학교"), P("에","에서"), W("와요") ] },
+    { en:"I go to the hospital.", slots:[ W("병원"), P("에","에서"), W("가요") ] },
+    { en:"I go to the bank.", slots:[ W("은행"), P("에","에서"), W("가요") ] },
+    { en:"My friend comes to my house.", slots:[ W("친구"), P("가","이"), W("집"), P("에","에서"), W("와요") ] },
+    { en:"I go to the market.", slots:[ W("시장"), P("에","에서"), W("가요") ] },
+    { en:"I go to the park.", slots:[ W("공원"), P("에","에서"), W("가요") ] },
+    { en:"I go to the department store.", slots:[ W("백화점"), P("에","에서"), W("가요") ] },
+    { en:"The teacher comes to school.", slots:[ W("선생님"), P("이","가"), W("학교"), P("에","에서"), W("와요") ] },
+    { en:"I go to the pharmacy.", slots:[ W("약국"), P("에","에서"), W("가요") ] },
+    { en:"I go to the bookstore.", slots:[ W("서점"), P("에","에서"), W("가요") ] },
+    { en:"I go to the company.", slots:[ W("회사"), P("에","에서"), W("가요") ] },
+    { en:"I go to the post office.", slots:[ W("우체국"), P("에","에서"), W("가요") ] },
+    { en:"A friend comes to the park.", slots:[ W("친구"), P("가","이"), W("공원"), P("에","에서"), W("와요") ] },
+    { en:"I go to the movie theater.", slots:[ W("영화관"), P("에","에서"), W("가요") ] },
+    { en:"I go to the sports center.", slots:[ W("스포츠 센터"), P("에","에서"), W("가요") ] }
+  ],
+  "G3: Place 에서 V (Action Location Particle)": [
+    { en:"I study at the library.", slots:[ W("저"), P("는","은"), W("도서관"), P("에서","에"), W("공부해요") ] },
+    { en:"I meet a friend at the cafe.", slots:[ W("카페"), P("에서","에"), W("친구"), P("를","을"), W("만나요") ] },
+    { en:"Where do you exercise?", slots:[ W("어디"), P("에서","에"), W("운동해요?") ] },
+    { en:"I watch a movie at the theater.", slots:[ W("영화관"), P("에서","에"), W("영화"), P("를","을"), W("봐요") ] },
+    { en:"My friend buys bread at the store.", slots:[ W("친구"), P("는","은"), W("시장"), P("에서","에"), W("빵"), P("을","를"), W("사요") ] },
+    { en:"I learn Korean at school.", slots:[ W("학교"), P("에서","에"), W("한국어"), P("를","을"), W("배워요") ] },
+    { en:"I work at a company.", slots:[ W("회사"), P("에서","에"), W("일해요") ] },
+    { en:"I exercise at the sports center.", slots:[ W("스포츠 센터"), P("에서","에"), W("운동해요") ] },
+    { en:"I buy a book at the bookstore.", slots:[ W("서점"), P("에서","에"), W("책"), P("을","를"), W("사요") ] },
+    { en:"I work part-time at the pharmacy.", slots:[ W("약국"), P("에서","에"), W("아르바이트해요") ] },
+    { en:"I eat lunch at a restaurant.", slots:[ W("식당"), P("에서","에"), W("점심"), P("을","를"), W("먹어요") ] },
+    { en:"I study at the cafe.", slots:[ W("카페"), P("에서","에"), W("공부해요") ] },
+    { en:"I take a walk at the park.", slots:[ W("공원"), P("에서","에"), W("산책해요") ] },
+    { en:"I drink coffee at home.", slots:[ W("집"), P("에서","에"), W("커피"), P("를","을"), W("마셔요") ] },
+    { en:"I buy clothes at the department store.", slots:[ W("백화점"), P("에서","에"), W("옷"), P("을","를"), W("사요") ] },
+    { en:"I read a book at the library.", slots:[ W("도서관"), P("에서","에"), W("책"), P("을","를"), W("읽어요") ] },
+    { en:"I call my friend at school.", slots:[ W("학교"), P("에서","에"), W("친구한테"), W("전화해요") ] }
+  ]
+},
+"Unit 5 · Restaurant": {
+  "G1: N이/가 A-아/어/해요 (Adjective Predicates)": [
+    { en:"Bibimbap is delicious.", slots:[ W("비빔밥"), P("이","가"), W("맛있어요") ] },
+    { en:"Cold noodles are cheap.", slots:[ W("냉면"), P("이","가"), W("싸요") ] },
+    { en:"The pizza is not delicious.", slots:[ W("피자"), P("가","이"), W("맛없어요") ] },
+    { en:"The staff is friendly.", slots:[ W("직원"), P("이","가"), W("친절해요") ] },
+    { en:"This gimchi stew is spicy.", slots:[ W("이 김치찌개"), P("는","은"), W("매워요") ] },
+    { en:"Tteokbokki is very delicious.", slots:[ W("떡볶이"), P("가","이"), W("아주"), W("맛있어요") ] },
+    { en:"Spaghetti is expensive.", slots:[ W("스파게티"), P("가","이"), W("비싸요") ] },
+    { en:"This restaurant is clean.", slots:[ W("이 식당"), P("은","는"), W("깨끗해요") ] },
+    { en:"Bulgogi is good.", slots:[ W("불고기"), P("가","이"), W("좋아요") ] },
+    { en:"The apples are cheap.", slots:[ W("사과"), P("가","이"), W("싸요") ] },
+    { en:"The movie is interesting.", slots:[ W("영화"), P("가","이"), W("재미있어요") ] },
+    { en:"Gimbap is cheap.", slots:[ W("김밥"), P("이","가"), W("싸요") ] },
+    { en:"The short rib soup is delicious.", slots:[ W("갈비탕"), P("이","가"), W("맛있어요") ] },
+    { en:"The hamburger is expensive.", slots:[ W("햄버거"), P("가","이"), W("비싸요") ] },
+    { en:"Samgyeopsal is delicious.", slots:[ W("삼겹살"), P("이","가"), W("맛있어요") ] },
+    { en:"The classroom is clean.", slots:[ W("교실"), P("이","가"), W("깨끗해요") ] }
+  ],
+  "G2: 안 A/V (Negation)": [
+    { en:"This restaurant is not expensive.", slots:[ W("이 식당"), P("은","는"), W("안"), W("비싸요") ] },
+    { en:"I do not eat meat.", slots:[ W("고기"), P("를","을"), W("안"), W("먹어요") ] },
+    { en:"The coffee is not expensive.", slots:[ W("커피"), P("가","이"), W("안"), W("비싸요") ] },
+    { en:"I do not drink tea.", slots:[ W("차"), P("를","을"), W("안"), W("마셔요") ] },
+    { en:"The test is not difficult.", slots:[ W("시험"), P("이","가"), W("안"), W("어려워요") ] },
+    { en:"I do not watch movies.", slots:[ W("영화"), P("를","을"), W("안"), W("봐요") ] },
+    { en:"The food is not spicy.", slots:[ W("음식"), P("이","가"), W("안"), W("매워요") ] },
+    { en:"I do not study today.", slots:[ W("오늘"), W("공부"), P("를","을"), W("안"), W("해요") ] },
+    { en:"The apples are not cheap.", slots:[ W("사과"), P("가","이"), W("안"), W("싸요") ] },
+    { en:"I do not exercise.", slots:[ W("운동"), P("을","를"), W("안"), W("해요") ] },
+    { en:"The room is not clean.", slots:[ W("방"), P("이","가"), W("안"), W("깨끗해요") ] },
+    { en:"I do not buy shoes.", slots:[ W("신발"), P("을","를"), W("안"), W("사요") ] },
+    { en:"The movie is not interesting.", slots:[ W("영화"), P("가","이"), W("안"), W("재미있어요") ] },
+    { en:"I do not eat breakfast.", slots:[ W("아침"), P("을","를"), W("안"), W("먹어요") ] },
+    { en:"The staff is not friendly.", slots:[ W("직원"), P("이","가"), W("안"), W("친절해요") ] },
+    { en:"I do not go to school.", slots:[ W("학교"), P("에","에서"), W("안"), W("가요") ] },
+    { en:"The weather is not cold.", slots:[ W("날씨"), P("가","이"), W("안"), W("추워요") ] }
+  ],
+  "G3: N을/를 먹겠어요 / Prices": [
+    { en:"Please give me two bowls of bibimbap.", slots:[ W("비빔밥"), W("두 그릇"), W("주세요") ] },
+    { en:"It's 3,000 won.", slots:[ W("삼천"), W("원"), P("이에요","예요") ] },
+    { en:"I will eat gimbap.", slots:[ W("저"), P("는","은"), W("김밥"), P("을","를"), W("먹겠어요") ] },
+    { en:"Please give me three cups of coffee.", slots:[ W("커피"), W("세 잔"), W("주세요") ] },
+    { en:"Bulgogi is 10,000 won.", slots:[ W("불고기"), P("는","은"), W("만"), W("원"), P("이에요","예요") ] },
+    { en:"Give me one hamburger and cola.", slots:[ W("햄버거"), W("하나"), P("하고","과"), W("콜라"), W("주세요") ] },
+    { en:"I will eat cold noodles.", slots:[ W("저"), P("는","은"), W("냉면"), P("을","를"), W("먹겠어요") ] },
+    { en:"It's 5,000 won.", slots:[ W("오천"), W("원"), P("이에요","예요") ] },
+    { en:"I will eat bulgogi.", slots:[ W("저"), P("는","은"), W("불고기"), P("를","을"), W("먹겠어요") ] },
+    { en:"Spaghetti is 8,000 won.", slots:[ W("스파게티"), P("는","은"), W("팔천"), W("원"), P("이에요","예요") ] },
+    { en:"I will drink soda.", slots:[ W("저"), P("는","은"), W("사이다"), P("를","을"), W("마시겠어요") ] },
+    { en:"Give me four servings of samgyeopsal.", slots:[ W("삼겹살"), W("네 인분"), W("주세요") ] },
+    { en:"Gimchi stew is 7,000 won.", slots:[ W("김치찌개"), P("는","은"), W("칠천"), W("원"), P("이에요","예요") ] },
+    { en:"I will eat pizza.", slots:[ W("저"), P("는","은"), W("피자"), P("를","을"), W("먹겠어요") ] },
+    { en:"It's 20,000 won.", slots:[ W("이만"), W("원"), P("이에요","예요") ] },
+    { en:"Please give me one bowl of galbitang.", slots:[ W("갈비탕"), W("한 그릇"), W("주세요") ] },
+    { en:"I will eat tteokbokki.", slots:[ W("저"), P("는","은"), W("떡볶이"), P("를","을"), W("먹겠어요") ] }
+  ]
+},
+"Unit 6 · Dates & Days": {
+  "G1: Time 에 (Time Particle)": [
+    { en:"I meet a friend on Friday.", slots:[ W("금요일"), P("에","에서"), W("친구"), P("를","을"), W("만나요") ] },
+    { en:"I will study on Sunday.", slots:[ W("일요일"), P("에","에서"), W("공부할 거예요") ] },
+    { en:"I will hike on Monday.", slots:[ W("월요일"), P("에","에서"), W("등산할 거예요") ] },
+    { en:"I will shop next week.", slots:[ W("다음 주"), P("에","에서"), W("쇼핑할 거예요") ] },
+    { en:"I will do laundry on Thursday.", slots:[ W("목요일"), P("에","에서"), W("빨래할 거예요") ] },
+    { en:"I went to the park on Tuesday.", slots:[ W("화요일"), P("에","에서"), W("공원"), P("에","에서"), W("갔어요") ] },
+    { en:"I go to the bank on Wednesday.", slots:[ W("수요일"), P("에","에서"), W("은행"), P("에","에서"), W("가요") ] },
+    { en:"I watch a movie on Saturday.", slots:[ W("토요일"), P("에","에서"), W("영화"), P("를","을"), W("봐요") ] },
+    { en:"I will clean on the weekend.", slots:[ W("주말"), P("에","에서"), W("청소할 거예요") ] },
+    { en:"I exercised in May.", slots:[ W("오월"), P("에","에서"), W("운동했어요") ] },
+    { en:"I will travel in August.", slots:[ W("팔월"), P("에","에서"), W("여행할 거예요") ] },
+    { en:"I meet my friend on weekdays.", slots:[ W("평일"), P("에","에서"), W("친구"), P("를","을"), W("만나요") ] },
+    { en:"I study in the morning.", slots:[ W("아침"), P("에","에서"), W("공부해요") ] },
+    { en:"I watch TV in the evening.", slots:[ W("저녁"), P("에","에서"), W("텔레비전"), P("을","를"), W("봐요") ] },
+    { en:"I go to the market on Friday.", slots:[ W("금요일"), P("에","에서"), W("시장"), P("에","에서"), W("가요") ] },
+    { en:"I will rest this week.", slots:[ W("이번 주"), P("에","에서"), W("쉬올 거예요") ] }
+  ],
+  "G2: N도 / N만 (Also / Only Particles)": [
+    { en:"I like bulgogi too.", slots:[ W("불고기"), P("도","만"), W("좋아해요") ] },
+    { en:"Only Eric likes coffee.", slots:[ W("에릭 씨"), P("만","도"), W("커피"), P("를","을"), W("좋아해요") ] },
+    { en:"I also clean on the weekend.", slots:[ W("주말"), P("에","에서"), W("청소"), P("도","만"), W("해요") ] },
+    { en:"Only Mina goes to the department store.", slots:[ W("미나 씨"), P("만","도"), W("백화점"), P("에","에서"), W("가요") ] },
+    { en:"I like juice too.", slots:[ W("주스"), P("도","만"), W("좋아해요") ] },
+    { en:"I only buy bread.", slots:[ W("빵"), P("만","도"), W("사요") ] },
+    { en:"Minjun studies on Sunday too.", slots:[ W("민준 씨는"), W("일요일"), P("에도","에만"), W("공부해요") ] },
+    { en:"I only drink water.", slots:[ W("물"), P("만","도"), W("마셔요") ] },
+    { en:"Sora also eats bibimbap.", slots:[ W("소라 씨"), P("도","만"), W("비빔밥"), P("을","를"), W("먹어요") ] },
+    { en:"Only Michael exercises.", slots:[ W("마이클 씨"), P("만","도"), W("운동해요") ] },
+    { en:"I study Korean on Monday too.", slots:[ W("월요일"), P("에도","에만"), W("한국어"), P("를","을"), W("공부해요") ] },
+    { en:"I only watch movies on Saturday.", slots:[ W("토요일"), P("에만","에도"), W("영화"), P("를","을"), W("봐요") ] },
+    { en:"Elena also bought a bag.", slots:[ W("엘레나 씨"), P("도","만"), W("가방"), P("을","를"), W("샀어요") ] },
+    { en:"Only Stephen read the book.", slots:[ W("스티븐 씨"), P("만","도"), W("책"), P("을","를"), W("읽었어요") ] },
+    { en:"I like cold noodles too.", slots:[ W("냉면"), P("도","만"), W("좋아해요") ] },
+    { en:"Only Yujin works today.", slots:[ W("유진 씨"), P("만","도"), W("오늘"), W("일해요") ] },
+    { en:"I also take photos on the weekend.", slots:[ W("주말"), P("에도","에만"), W("사진"), P("을","를"), W("찍어요") ] }
+  ],
+  "G3: V-을/ㄹ 거예요 & Past Tense": [
+    { en:"I will meet a friend on Saturday.", slots:[ W("토요일"), P("에","에서"), W("친구"), P("를","을"), W("만날 거예요") ] },
+    { en:"I will take photos tomorrow.", slots:[ W("내일"), W("사진"), P("을","를"), W("찍을 거예요") ] },
+    { en:"Yesterday was Wednesday.", slots:[ W("어제"), P("는","은"), W("수요일"), P("이었어요","였어요") ] },
+    { en:"I took a walk yesterday.", slots:[ W("어제"), W("산책했어요") ] },
+    { en:"What date is it today?", slots:[ W("오늘"), P("은","는"), W("며칠"), P("이에요?","예요?") ] },
+    { en:"I will clean tomorrow.", slots:[ W("내일"), W("청소할 거예요") ] },
+    { en:"I learned Korean yesterday.", slots:[ W("어제"), W("한국어"), P("를","을"), W("배웠어요") ] },
+    { en:"I will go to the library tomorrow.", slots:[ W("내일"), W("도서관"), P("에","에서"), W("갈 거예요") ] },
+    { en:"I bought a book yesterday.", slots:[ W("어제"), W("책"), P("을","를"), W("샀어요") ] },
+    { en:"I will eat pizza on Sunday.", slots:[ W("일요일"), P("에","에서"), W("피자"), P("를","을"), W("먹을 거예요") ] },
+    { en:"I watched a movie yesterday evening.", slots:[ W("어제 저녁"), P("에","에서"), W("영화"), P("를","을"), W("봤어요") ] },
+    { en:"I will hike next week.", slots:[ W("다음 주"), P("에","에서"), W("등산할 거예요") ] },
+    { en:"Yesterday was my birthday.", slots:[ W("어제"), P("는","은"), W("생일"), P("이었어요","였어요") ] },
+    { en:"I will read a book tomorrow.", slots:[ W("내일"), W("책"), P("을","를"), W("읽을 거예요") ] },
+    { en:"I met my teacher yesterday.", slots:[ W("어제"), W("선생님"), P("을","를"), W("만났어요") ] },
+    { en:"I will shop on Friday.", slots:[ W("금요일"), P("에","에서"), W("쇼핑할 거예요") ] },
+    { en:"I exercised yesterday morning.", slots:[ W("어제 아침"), P("에","에서"), W("운동했어요") ] }
+  ]
+},
+"Unit 7 · Time": {
+  "G1: Time 부터 Time 까지 (From ... To)": [
+    { en:"I work from nine to six.", slots:[ W("아홉 시"), P("부터","까지"), W("여섯 시"), P("까지","부터"), W("일해요") ] },
+    { en:"I exercised from two o'clock to four o'clock.", slots:[ W("두 시"), P("부터","까지"), W("네 시"), P("까지","부터"), W("운동했어요") ] },
+    { en:"I study from ten to twelve.", slots:[ W("열 시"), P("부터","까지"), W("열두 시"), P("까지","부터"), W("공부해요") ] },
+    { en:"The vacation is from Monday to Friday.", slots:[ W("월요일"), P("부터","까지"), W("금요일"), P("까지","부터"), W("이에요") ] },
+    { en:"Class is from one to three.", slots:[ W("수업"), P("은","는"), W("한 시"), P("부터","까지"), W("세 시"), P("까지","부터"), W("이에요") ] },
+    { en:"I slept from eleven to seven.", slots:[ W("열한 시"), P("부터","까지"), W("일곱 시"), P("까지","부터"), W("잤어요") ] },
+    { en:"I worked part-time from one to five.", slots:[ W("한 시"), P("부터","까지"), W("다섯 시"), P("까지","부터"), W("아르바이트했어요") ] },
+    { en:"The store is open from nine to eight.", slots:[ W("가게"), P("는","은"), W("아홉 시"), P("부터","까지"), W("여덟 시"), P("까지","부터"), W("열려요") ] },
+    { en:"I clean from ten to eleven.", slots:[ W("열 시"), P("부터","까지"), W("열한 시"), P("까지","부터"), W("청소해요") ] },
+    { en:"The exam is from two to four.", slots:[ W("시험"), P("은","는"), W("두 시"), P("부터","까지"), W("네 시"), P("까지","부터"), W("이에요") ] },
+    { en:"I study from morning to evening.", slots:[ W("아침"), P("부터","까지"), W("저녁"), P("까지","부터"), W("공부해요") ] },
+    { en:"The concert is from seven to nine.", slots:[ W("공연"), P("은","는"), W("일곱 시"), P("부터","까지"), W("아홉 시"), P("까지","부터"), W("이에요") ] },
+    { en:"I walked from three to four.", slots:[ W("세 시"), P("부터","까지"), W("네 시"), P("까지","부터"), W("산책했어요") ] },
+    { en:"The library is open from eight to ten.", slots:[ W("도서관"), P("은","는"), W("여덟 시"), P("부터","까지"), W("열 시"), P("까지","부터"), W("열려요") ] },
+    { en:"I cooked from five to six.", slots:[ W("다섯 시"), P("부터","까지"), W("여섯 시"), P("까지","부터"), W("요리했어요") ] },
+    { en:"I played tennis from four to six.", slots:[ W("네 시"), P("부터","까지"), W("여섯 시"), P("까지","부터"), W("테니스"), P("를","을"), W("쳤어요") ] }
+  ],
+  "G2: V-고 V (Sequential Action)": [
+    { en:"I wash my face and brush my teeth.", slots:[ W("세수하고"), W("이를 닦아요") ] },
+    { en:"I eat lunch and then study.", slots:[ W("점심"), P("을","를"), W("먹고"), W("공부해요") ] },
+    { en:"I get up and then wash my face.", slots:[ W("일어나고"), W("세수해요") ] },
+    { en:"I cook and then eat.", slots:[ W("요리하고"), W("먹어요") ] },
+    { en:"I meet a friend and talk.", slots:[ W("친구"), P("를","을"), W("만나고"), W("이야기해요") ] },
+    { en:"I put on clothes and put on makeup.", slots:[ W("옷"), P("을","를"), W("입고"), W("화장해요") ] },
+    { en:"I shower and then sleep.", slots:[ W("샤워하고"), W("자요") ] },
+    { en:"I exercise and then shower.", slots:[ W("운동하고"), W("샤워해요") ] },
+    { en:"I brush my teeth and then sleep.", slots:[ W("이를 닦고"), W("자요") ] },
+    { en:"I read a book and then sleep.", slots:[ W("책"), P("을","를"), W("읽고"), W("자요") ] },
+    { en:"I do laundry and then clean.", slots:[ W("빨래하고"), W("청소해요") ] },
+    { en:"I eat breakfast and then go to school.", slots:[ W("아침"), P("을","를"), W("먹고"), W("학교"), P("에","에서"), W("가요") ] },
+    { en:"I play soccer and then drink water.", slots:[ W("축구하고"), W("물"), P("을","를"), W("마셔요") ] },
+    { en:"I do homework and then watch TV.", slots:[ W("숙제하고"), W("텔레비전"), P("을","를"), W("봐요") ] },
+    { en:"I study and then meet a friend.", slots:[ W("공부하고"), W("친구"), P("를","을"), W("만나요") ] },
+    { en:"I shop and then go home.", slots:[ W("쇼핑하고"), W("집"), P("에","에서"), W("가요") ] },
+    { en:"I listen to music and then sleep.", slots:[ W("음악"), P("을","를"), W("듣고"), W("자요") ] }
+  ],
+  "G3: Time Sentences & Past Actions": [
+    { en:"I got up early today.", slots:[ W("오늘"), W("일찍"), W("일어났어요") ] },
+    { en:"I played basketball yesterday.", slots:[ W("어제"), W("농구했어요") ] },
+    { en:"What time is it now?", slots:[ W("지금"), W("몇 시예요?") ] },
+    { en:"Class ended at three o'clock.", slots:[ W("세 시"), P("에","에서"), W("수업"), P("이","가"), W("끝났어요") ] },
+    { en:"I went camping last week.", slots:[ W("지난주"), P("에","에서"), W("캠핑했어요") ] },
+    { en:"I got up late today.", slots:[ W("오늘"), W("늦게"), W("일어났어요") ] },
+    { en:"I played baseball yesterday.", slots:[ W("어제"), W("야구했어요") ] },
+    { en:"The exam ended at four o'clock.", slots:[ W("네 시"), P("에","에서"), W("시험"), P("이","가"), W("끝났어요") ] },
+    { en:"I swam yesterday morning.", slots:[ W("어제 아침"), P("에","에서"), W("수영했어요") ] },
+    { en:"I played golf on the weekend.", slots:[ W("주말"), P("에","에서"), W("골프"), P("를","을"), W("쳤어요") ] },
+    { en:"I traveled last month.", slots:[ W("지난달"), P("에","에서"), W("여행했어요") ] },
+    { en:"It is seven o'clock now.", slots:[ W("지금"), P("은","는"), W("일곱 시예요") ] },
+    { en:"I studied a lot today.", slots:[ W("오늘"), W("많이"), W("공부했어요") ] },
+    { en:"I arrived slowly.", slots:[ W("천천히"), W("왔어요") ] },
+    { en:"I ate a little.", slots:[ W("조금"), W("먹었어요") ] },
+    { en:"I ate quickly.", slots:[ W("빨리"), W("먹었어요") ] },
+    { en:"I slept early yesterday.", slots:[ W("어제"), W("일찍"), W("잤어요") ] }
+  ]
+},
+"Unit 8 · Weather": {
+  "G1: V/A-아/어서 (Reason & Cause)": [
+    { en:"Because it's raining, I don't go to the park.", slots:[ W("비가 와서"), W("공원"), P("에","에서"), W("안 가요") ] },
+    { en:"Because it's hot, I drink cold water.", slots:[ W("날씨가 더워서"), W("찬 물"), P("을","를"), W("마셔요") ] },
+    { en:"Because it's cold, I wear a heavy coat.", slots:[ W("날씨가 추워서"), W("두꺼운 옷"), P("을","를"), W("입어요") ] },
+    { en:"Because it's sunny, I hike.", slots:[ W("날씨가 맑아서"), W("등산해요") ] },
+    { en:"Because it's cloudy, I stay home.", slots:[ W("날씨가 흐려서"), W("집"), P("에","에서"), W("있어요") ] },
+    { en:"Because it's snowing, I take photos.", slots:[ W("눈이 와서"), W("사진"), P("을","를"), W("찍어요") ] },
+    { en:"Because it's warm, I take a walk.", slots:[ W("날씨가 따뜻해서"), W("산책해요") ] },
+    { en:"Because it's cool, I like it.", slots:[ W("날씨가 시원해서"), W("좋아요") ] },
+    { en:"Because the wind blows, it's cold.", slots:[ W("바람이 불어서"), W("추워요") ] },
+    { en:"Because it's spring, flowers bloom.", slots:[ W("봄이어서"), W("꽃이 피어요") ] },
+    { en:"Because it's summer, it's hot.", slots:[ W("여름이어서"), W("더워요") ] },
+    { en:"Because it's autumn, the weather is cool.", slots:[ W("가을이어서"), W("시원해요") ] },
+    { en:"Because it's winter, it snows.", slots:[ W("겨울이어서"), W("눈이 와요") ] },
+    { en:"Because the bag is heavy, it's hard.", slots:[ W("가방이 무거워서"), W("힘들어요") ] },
+    { en:"Because Korean is difficult, I study hard.", slots:[ W("한국어가 어려워서"), W("열심히 공부해요") ] },
+    { en:"Because the dog is cute, I like it.", slots:[ W("강아지가 귀여워서"), W("좋아해요") ] }
+  ],
+  "G2: V-을/ㄹ까요? (Suggestions)": [
+    { en:"Shall we go to the cafe?", slots:[ W("카페"), P("에","에서"), W("갈까요?") ] },
+    { en:"Shall we eat bibimbap?", slots:[ W("비빔밥"), P("을","를"), W("먹을까요?") ] },
+    { en:"Shall we watch a movie together?", slots:[ W("같이"), W("영화"), P("를","을"), W("볼까요?") ] },
+    { en:"Shall we meet on Saturday?", slots:[ W("토요일"), P("에","에서"), W("만날까요?") ] },
+    { en:"Shall we drink coffee?", slots:[ W("커피"), P("를","을"), W("마실까요?") ] },
+    { en:"Shall we take a walk in the park?", slots:[ W("공원"), P("에서","에"), W("산책할까요?") ] },
+    { en:"Shall we go to the department store?", slots:[ W("백화점"), P("에","에서"), W("갈까요?") ] },
+    { en:"Shall we study together?", slots:[ W("같이"), W("공부할까요?") ] },
+    { en:"Shall we travel on the weekend?", slots:[ W("주말"), P("에","에서"), W("여행할까요?") ] },
+    { en:"Shall we eat lunch at one o'clock?", slots:[ W("한 시"), P("에","에서"), W("점심"), P("을","를"), W("먹을까요?") ] },
+    { en:"Shall we buy a present?", slots:[ W("선물"), P("을","를"), W("살까요?") ] },
+    { en:"Shall we go camping?", slots:[ W("캠핑"), P("을","를"), W("갈까요?") ] },
+    { en:"Shall we play tennis tomorrow?", slots:[ W("내일"), W("테니스"), P("를","을"), W("칠까요?") ] },
+    { en:"Shall we eat cold noodles today?", slots:[ W("오늘"), W("냉면"), P("을","를"), W("먹을까요?") ] },
+    { en:"Shall we take photos here?", slots:[ W("여기"), P("에서","에"), W("사진"), P("을","를"), W("찍을까요?") ] },
+    { en:"Shall we listen to music?", slots:[ W("음악"), P("을","를"), W("들릴까요?") ] },
+    { en:"Shall we clean the room?", slots:[ W("방"), P("을","를"), W("청소할까요?") ] }
+  ],
+  "G3: Expressions & Irregular Weather Adjectives": [
+    { en:"Summer is hot.", slots:[ W("여름"), P("은","는"), W("더워요") ] },
+    { en:"Winter is cold.", slots:[ W("겨울"), P("은","는"), W("추워요") ] },
+    { en:"Korean is easy.", slots:[ W("한국어"), P("는","은"), W("쉬워요") ] },
+    { en:"This clothes are light.", slots:[ W("이 옷"), P("은","는"), W("가벼워요") ] },
+    { en:"The movie is scary.", slots:[ W("영화"), P("가","이"), W("무서워요") ] },
+    { en:"The exam was difficult.", slots:[ W("시험"), P("이","가"), W("어려웠어요") ] },
+    { en:"Spring is warm.", slots:[ W("봄"), P("은","는"), W("따뜻해요") ] },
+    { en:"Autumn is cool.", slots:[ W("가을"), P("은","는"), W("시원해요") ] },
+    { en:"Today is very sunny.", slots:[ W("오늘"), P("은","는"), W("아주"), W("맑아요") ] },
+    { en:"It is cloudy today.", slots:[ W("오늘"), P("은","는"), W("날씨가"), W("흐려요") ] },
+    { en:"Strong wind is blowing.", slots:[ W("바람이"), W("많이"), W("불어요") ] },
+    { en:"It snowed a lot yesterday.", slots:[ W("어제"), W("눈이"), W("많이"), W("왔어요") ] },
+    { en:"It is raining today.", slots:[ W("오늘"), W("비가"), W("와요") ] },
+    { en:"The puppy is very cute.", slots:[ W("강아지"), P("가","이"), W("너무"), W("귀여워요") ] },
+    { en:"This bag is too heavy.", slots:[ W("이 가방"), P("은","는"), W("너무"), W("무거워요") ] },
+    { en:"This problem is easy.", slots:[ W("이 문제"), P("는","은"), W("쉬워요") ] },
+    { en:"Yesterday was very cold.", slots:[ W("어제"), P("는","은"), W("아주"), W("추웠어요") ] }
+  ]
+}
+};
+
+/* ---------------- APP STATE ---------------- */
+let currentUnit = Object.keys(UNITS)[0];
+let currentMode = 'match';
+let quizDir = 'kr-en'; // 'kr-en' or 'en-kr'
+
+// Match State
+let matchPairs = [];
+let selectedMatch = { kr: null, en: null };
+let matchDone = 0;
+let matchMistakes = 0;
+
+// Quiz State
+let quizCurrent = null;
+let quizScore = 0;
+let quizAsked = 0;
+
+// Grammar State
+let currentGrammarTopic = "";
+let grammarSentences = [];
+let grammarIndex = 0;
+let grammarCurrentSentence = null;
+let grammarBuiltSlots = [];
+let grammarDone = 0;
+let grammarMistakes = 0;
+
+/* ---------------- DOM REFS ---------------- */
+const startMenu = document.getElementById('startMenu');
+const tabsRow = document.getElementById('tabsRow');
+const cardShell = document.getElementById('cardShell');
+const backToMenuBtn = document.getElementById('backToMenu');
+
+const menuUnitSelect = document.getElementById('menuUnitSelect');
+const unitSelect = document.getElementById('unitSelect');
+const grammarTopicSelect = document.getElementById('grammarTopicSelect');
+
+const dirToggle = document.getElementById('dirToggle');
+const dirKrEn = document.getElementById('dirKrEn');
+const dirEnKr = document.getElementById('dirEnKr');
+
+const panelMatch = document.getElementById('panel-match');
+const panelQuiz = document.getElementById('panel-quiz');
+const panelGrammar = document.getElementById('panel-grammar');
+
+const sealStamp = document.getElementById('sealStamp');
+
+/* ---------------- INIT & NAVIGATION ---------------- */
+function init(){
+  populateUnitDropdowns();
+  setupMenuCards();
+  setupTabs();
+  setupControls();
+  
+  // Set default grammar topic
+  updateGrammarTopics();
+}
+
+function populateUnitDropdowns(){
+  const unitKeys = Object.keys(UNITS);
+  menuUnitSelect.innerHTML = '';
+  unitSelect.innerHTML = '';
+  
+  unitKeys.forEach(u => {
+    const opt1 = document.createElement('option');
+    opt1.value = u; opt1.textContent = u;
+    menuUnitSelect.appendChild(opt1);
+
+    const opt2 = document.createElement('option');
+    opt2.value = u; opt2.textContent = u;
+    unitSelect.appendChild(opt2);
+  });
+
+  menuUnitSelect.value = currentUnit;
+  unitSelect.value = currentUnit;
+}
+
+function updateGrammarTopics(){
+  grammarTopicSelect.innerHTML = '';
+  if(GRAMMAR_UNITS[currentUnit]){
+    const topics = Object.keys(GRAMMAR_UNITS[currentUnit]);
+    topics.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t; opt.textContent = t;
+      grammarTopicSelect.appendChild(opt);
+    });
+    currentGrammarTopic = topics[0] || "";
+    grammarTopicSelect.style.display = 'inline-block';
+  } else {
+    const opt = document.createElement('option');
+    opt.value = ""; opt.textContent = "No specific grammar drills";
+    grammarTopicSelect.appendChild(opt);
+    currentGrammarTopic = "";
+    grammarTopicSelect.style.display = 'none';
+  }
+}
+
+function setupMenuCards(){
+  document.querySelectorAll('.menu-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const mode = card.dataset.mode;
+      currentUnit = menuUnitSelect.value;
+      unitSelect.value = currentUnit;
+      switchMode(mode);
+    });
+  });
+
+  menuUnitSelect.addEventListener('change', (e) => {
+    currentUnit = e.target.value;
+    unitSelect.value = currentUnit;
+    updateGrammarTopics();
+  });
+}
+
+function setupTabs(){
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      switchMode(tab.dataset.mode);
+    });
+  });
+}
+
+function switchMode(mode){
+  currentMode = mode;
+  
+  // View states
+  startMenu.style.display = 'none';
+  tabsRow.style.display = 'flex';
+  cardShell.style.display = 'block';
+
+  // Active tab style
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.mode === mode);
+  });
+
+  // Controls visibility
+  dirToggle.style.display = (mode === 'quiz') ? 'flex' : 'none';
+  updateGrammarTopics();
+
+  // Panel visibility
+  panelMatch.style.display = (mode === 'match') ? 'block' : 'none';
+  panelQuiz.style.display = (mode === 'quiz') ? 'block' : 'none';
+  panelGrammar.style.display = (mode === 'grammar') ? 'block' : 'none';
+
+  if(mode === 'match') startMatchRound();
+  if(mode === 'quiz') nextQuizQuestion();
+  if(mode === 'grammar') startGrammarPractice();
+}
+
+backToMenuBtn.addEventListener('click', () => {
+  startMenu.style.display = 'block';
+  tabsRow.style.display = 'none';
+  cardShell.style.display = 'none';
+});
+
+function setupControls(){
+  unitSelect.addEventListener('change', (e) => {
+    currentUnit = e.target.value;
+    menuUnitSelect.value = currentUnit;
+    updateGrammarTopics();
+    if(currentMode === 'match') startMatchRound();
+    if(currentMode === 'quiz') nextQuizQuestion();
+    if(currentMode === 'grammar') startGrammarPractice();
+  });
+
+  grammarTopicSelect.addEventListener('change', (e) => {
+    currentGrammarTopic = e.target.value;
+    if(currentMode === 'grammar') startGrammarPractice();
+  });
+
+  dirKrEn.addEventListener('click', () => {
+    quizDir = 'kr-en';
+    dirKrEn.classList.add('active'); dirEnKr.classList.remove('active');
+    nextQuizQuestion();
+  });
+  dirEnKr.addEventListener('click', () => {
+    quizDir = 'en-kr';
+    dirEnKr.classList.add('active'); dirKrEn.classList.remove('active');
+    nextQuizQuestion();
+  });
+}
+
+function triggerStamp(){
+  sealStamp.classList.remove('show');
+  void sealStamp.offsetWidth; // trigger reflow
+  sealStamp.classList.add('show');
+}
+
+/* ---------------- MATCH MODE CODE ---------------- */
+function startMatchRound(){
+  matchDone = 0; matchMistakes = 0;
+  selectedMatch = { kr: null, en: null };
+  document.getElementById('matchDone').textContent = '0';
+  document.getElementById('matchMistakes').textContent = '0';
+  document.getElementById('roundComplete').style.display = 'none';
+
+  const list = UNITS[currentUnit] || UNITS[ALL_LABEL];
+  const shuffled = [...list].sort(() => Math.random() - 0.5);
+  matchPairs = shuffled.slice(0, Math.min(8, shuffled.length));
+
+  document.getElementById('matchTotal').textContent = matchPairs.length;
+
+  const krList = [...matchPairs].sort(() => Math.random() - 0.5);
+  const enList = [...matchPairs].sort(() => Math.random() - 0.5);
+
+  const krCol = document.getElementById('matchKrCol');
+  const enCol = document.getElementById('matchEnCol');
+  krCol.innerHTML = ''; enCol.innerHTML = '';
+
+  krList.forEach((pair) => {
+    const btn = document.createElement('button');
+    btn.className = 'match-item kr';
+    btn.textContent = pair[0];
+    btn.dataset.val = pair[0];
+    btn.addEventListener('click', () => onMatchClick('kr', btn, pair[0]));
+    krCol.appendChild(btn);
+  });
+
+  enList.forEach((pair) => {
+    const btn = document.createElement('button');
+    btn.className = 'match-item';
+    btn.textContent = pair[1];
+    btn.dataset.val = pair[0]; // link using KR term
+    btn.addEventListener('click', () => onMatchClick('en', btn, pair[0]));
+    enCol.appendChild(btn);
+  });
+}
+
+function onMatchClick(side, el, value){
+  if(el.classList.contains('correct')) return;
+
+  // Clear wrong class if user re-selects an item that previously shook
+  el.classList.remove('wrong');
+
+  if(side === 'kr'){
+    if(selectedMatch.kr) selectedMatch.kr.classList.remove('selected');
+    selectedMatch.kr = el;
+    el.classList.add('selected');
+  } else {
+    if(selectedMatch.en) selectedMatch.en.classList.remove('selected');
+    selectedMatch.en = el;
+    el.classList.add('selected');
+  }
+
+  if(selectedMatch.kr && selectedMatch.en){
+    const krVal = selectedMatch.kr.dataset.val;
+    const enVal = selectedMatch.en.dataset.val;
+
+    const krEl = selectedMatch.kr;
+    const enEl = selectedMatch.en;
+
+    if(krVal === enVal){
+      // Correct match: explicitly remove 'selected' and 'wrong', add 'correct'
+      krEl.classList.remove('selected', 'wrong');
+      enEl.classList.remove('selected', 'wrong');
+      krEl.classList.add('correct');
+      enEl.classList.add('correct');
+
+      matchDone++;
+      document.getElementById('matchDone').textContent = matchDone;
+      selectedMatch = { kr: null, en: null };
+
+      if(matchDone === matchPairs.length){
+        document.getElementById('roundComplete').style.display = 'block';
+        triggerStamp();
+      }
+    } else {
+      // Wrong match
+      matchMistakes++;
+      document.getElementById('matchMistakes').textContent = matchMistakes;
+      krEl.classList.add('wrong');
+      enEl.classList.add('wrong');
+
+      setTimeout(() => {
+        if(krEl.classList.contains('wrong')) krEl.classList.remove('wrong', 'selected');
+        if(enEl.classList.contains('wrong')) enEl.classList.remove('wrong', 'selected');
+      }, 400);
+
+      selectedMatch = { kr: null, en: null };
+    }
+  }
+}
+
+document.getElementById('matchNewRound').addEventListener('click', startMatchRound);
+
+
+/* ---------------- QUIZ MODE CODE ---------------- */
+function nextQuizQuestion(){
+  const list = UNITS[currentUnit] || UNITS[ALL_LABEL];
+  if(list.length < 4) return;
+
+  const target = list[Math.floor(Math.random() * list.length)];
+  quizCurrent = target;
+
+  const distractors = list.filter(item => item[0] !== target[0])
+                          .sort(() => Math.random() - 0.5)
+                          .slice(0, 3);
+  
+  const optionsList = [target, ...distractors].sort(() => Math.random() - 0.5);
+
+  const tag = document.getElementById('quizTag');
+  const term = document.getElementById('quizTerm');
+  const optionsDiv = document.getElementById('quizOptions');
+  const nextBtn = document.getElementById('quizNext');
+  const skipBtn = document.getElementById('quizSkip');
+
+  nextBtn.style.display = 'none';
+  skipBtn.style.display = 'inline-block';
+  optionsDiv.innerHTML = '';
+
+  if(quizDir === 'kr-en'){
+    tag.textContent = "WHAT DOES THIS MEAN?";
+    term.textContent = target[0];
+  } else {
+    tag.textContent = "CHOOSE THE KOREAN WORD";
+    term.textContent = target[1];
+  }
+
+  optionsList.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = (quizDir === 'kr-en') ? opt[1] : opt[0];
+    btn.addEventListener('click', () => onQuizSelect(btn, opt[0] === target[0]));
+    optionsDiv.appendChild(btn);
+  });
+}
+
+function onQuizSelect(btn, isCorrect){
+  quizAsked++;
+  const options = document.querySelectorAll('#quizOptions .option');
+  options.forEach(o => o.disabled = true);
+
+  if(isCorrect){
+    btn.classList.add('correct');
+    quizScore++;
+    triggerStamp();
+  } else {
+    btn.classList.add('wrong');
+    // Highlight correct
+    options.forEach(o => {
+      const matchTxt = (quizDir === 'kr-en') ? quizCurrent[1] : quizCurrent[0];
+      if(o.textContent === matchTxt) o.classList.add('correct');
+    });
+  }
+
+  document.getElementById('quizScore').textContent = quizScore;
+  document.getElementById('quizAsked').textContent = quizAsked;
+  document.getElementById('quizAcc').textContent = Math.round((quizScore / quizAsked) * 100) + '%';
+
+  document.getElementById('quizNext').style.display = 'inline-block';
+  document.getElementById('quizSkip').style.display = 'none';
+}
+
+document.getElementById('quizNext').addEventListener('click', nextQuizQuestion);
+document.getElementById('quizSkip').addEventListener('click', nextQuizQuestion);
+
+
+/* ---------------- GRAMMAR MODE CODE ---------------- */
+function startGrammarPractice(){
+  grammarDone = 0; grammarMistakes = 0;
+  document.getElementById('grammarDone').textContent = '0';
+  document.getElementById('grammarMistakes').textContent = '0';
+
+  if(!GRAMMAR_UNITS[currentUnit] || !currentGrammarTopic){
+    document.getElementById('grammarEn').textContent = "No practice available for this unit.";
+    document.getElementById('grammarBank').innerHTML = '';
+    return;
+  }
+
+  grammarSentences = GRAMMAR_UNITS[currentUnit][currentGrammarTopic] || [];
+  grammarIndex = 0;
+  grammarSentences = [...grammarSentences].sort(() => Math.random() - 0.5);
+
+  loadGrammarSentence();
+}
+
+function loadGrammarSentence(){
+  if(grammarSentences.length === 0) return;
+  grammarCurrentSentence = grammarSentences[grammarIndex % grammarSentences.length];
+  grammarBuiltSlots = [];
+
+  document.getElementById('grammarTopicTag').textContent = currentGrammarTopic;
+  document.getElementById('grammarEn').textContent = grammarCurrentSentence.en;
+  document.getElementById('grammarComplete').textContent = '';
+  document.getElementById('grammarNext').style.display = 'none';
+  document.getElementById('grammarSkip').style.display = 'inline-block';
+  document.getElementById('grammarReveal').style.display = 'inline-block';
+
+  renderGrammarAnswerArea();
+  renderGrammarBank();
+}
+
+function renderGrammarAnswerArea(){
+  const answerDiv = document.getElementById('grammarAnswer');
+  answerDiv.innerHTML = '';
+
+  if(grammarBuiltSlots.length === 0){
+    answerDiv.innerHTML = '<span class="placeholder" id="grammarPlaceholder">tap words &amp; particles below, in order →</span>';
+    return;
+  }
+
+  grammarBuiltSlots.forEach((item, idx) => {
+    const span = document.createElement('span');
+    span.className = 'slot-filled' + (item.isParticle ? ' particle' : '');
+    span.textContent = item.t;
+    span.title = "Click to remove";
+    span.addEventListener('click', () => removeGrammarSlot(idx));
+    answerDiv.appendChild(span);
+  });
+}
+
+function renderGrammarBank(){
+  const bankDiv = document.getElementById('grammarBank');
+  bankDiv.innerHTML = '';
+
+  // Flatten all choices from slots
+  let choices = [];
+  grammarCurrentSentence.slots.forEach((slotChoices, slotIndex) => {
+    slotChoices.forEach(choice => {
+      choices.push({ ...choice, slotIndex });
+    });
+  });
+
+  // Shuffle chips
+  choices.sort(() => Math.random() - 0.5);
+
+  choices.forEach((choice, chipIndex) => {
+    const btn = document.createElement('button');
+    btn.className = 'chip' + (choice.isParticle ? ' particle-chip' : '');
+    btn.textContent = choice.t;
+    btn.dataset.chipIndex = chipIndex;
+
+    btn.addEventListener('click', () => onGrammarChipClick(btn, choice));
+    bankDiv.appendChild(btn);
+  });
+}
+
+function onGrammarChipClick(btn, choice){
+  const nextSlotIndex = grammarBuiltSlots.length;
+  const targetSlotChoices = grammarCurrentSentence.slots[nextSlotIndex];
+
+  if(!targetSlotChoices) return; // Full already
+
+  const isCorrectChoice = targetSlotChoices.some(item => item.ok && item.t === choice.t);
+
+  if(isCorrectChoice){
+    grammarBuiltSlots.push(choice);
+    btn.classList.add('spent');
+    renderGrammarAnswerArea();
+
+    // Check completion
+    if(grammarBuiltSlots.length === grammarCurrentSentence.slots.length){
+      grammarDone++;
+      document.getElementById('grammarDone').textContent = grammarDone;
+      document.getElementById('grammarComplete').textContent = '✓ Perfect sentence!';
+      triggerStamp();
+
+      document.getElementById('grammarNext').style.display = 'inline-block';
+      document.getElementById('grammarSkip').style.display = 'none';
+      document.getElementById('grammarReveal').style.display = 'none';
+    }
+  } else {
+    // Incorrect choice
+    grammarMistakes++;
+    document.getElementById('grammarMistakes').textContent = grammarMistakes;
+    btn.classList.add('wrong');
+    setTimeout(() => btn.classList.remove('wrong'), 400);
+  }
+}
+
+function removeGrammarSlot(idx){
+  // Only remove from top/last to preserve order integrity
+  if(idx !== grammarBuiltSlots.length - 1) return;
+  
+  const removed = grammarBuiltSlots.pop();
+  renderGrammarAnswerArea();
+
+  // Un-spend chip in bank
+  const chips = document.querySelectorAll('#grammarBank .chip');
+  chips.forEach(btn => {
+    if(btn.textContent === removed.t && btn.classList.contains('spent')){
+      btn.classList.remove('spent');
+    }
+  });
+}
+
+document.getElementById('grammarReveal').addEventListener('click', () => {
+  grammarBuiltSlots = grammarCurrentSentence.slots.map(slotChoices => {
+    return slotChoices.find(c => c.ok);
+  });
+  renderGrammarAnswerArea();
+  document.getElementById('grammarComplete').textContent = 'Answer revealed';
+  document.getElementById('grammarNext').style.display = 'inline-block';
+  document.getElementById('grammarSkip').style.display = 'none';
+  document.getElementById('grammarReveal').style.display = 'none';
+
+  document.querySelectorAll('#grammarBank .chip').forEach(c => c.classList.add('spent'));
+});
+
+document.getElementById('grammarNext').addEventListener('click', () => {
+  grammarIndex++;
+  loadGrammarSentence();
+});
+
+document.getElementById('grammarSkip').addEventListener('click', () => {
+  grammarIndex++;
+  loadGrammarSentence();
+});
+
+/* ---------------- STARTUP ---------------- */
+window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
